@@ -1,0 +1,38 @@
+install.packages("data.table")
+install.packages("datasets")
+library("datasets")
+
+## Using women dataframe ##
+
+View(women)
+womendata <- women
+
+## number of women with height > average but weight < average 
+
+mean(womendata$height)
+mean(womendata$weight)
+
+womenmorehlessw <- subset(womendata,womendata$height > mean(womendata$height) & womendata$weight < mean(womendata$weight))
+
+nrow(womenmorehlessw)
+
+# extract data from site link, population data of 15 indian cities
+
+install.packages("rvest")
+library("rvest")
+city_link="http://www.worldatlas.com/articles/the-biggest-cities-in-india.html"
+
+# Reading the link 
+
+city1= read_html(city_link)
+
+# Loading node type table 
+
+citytable1=html_nodes(city1,"table")
+citytable1final<- html_table(citytable1[1], fill= TRUE)
+view(citytable1final)
+
+# Final conversion to data frame #
+
+city_data= as.data.frame(citytable1final)
+View(city_data)
