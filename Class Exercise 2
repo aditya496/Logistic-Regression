@@ -1,0 +1,39 @@
+
+
+oecdfile_csv <- read.csv(file="C:/Study/Term 4/AMMA/Github/DP_LIVE_08072017230634515.csv")
+oecdfile_scv <- head(oecdfile_csv,-1)
+
+#End of problem
+
+
+#Step 2: Read tables Wikipedia
+#Number of ODIs won by India
+
+#Problem 2
+
+Table_url = "https://en.wikipedia.org/wiki/India%E2%80%93Pakistan_cricket_rivalry"
+
+my_file = read_html(Table_url)
+
+#Get table node from HTML file 
+
+
+my_table=html_nodes(my_file,"table")
+
+#Save as a different table variable
+
+my_table1 <- html_table(my_table[2] , fill=TRUE)
+
+#Converting data frame
+
+my_table.df <- as.data.frame(my_table1)
+
+#Viewing data frame
+
+View(my_table.df)
+
+India_ODIwins = my_table.df$ODI[3]
+
+cat(India_ODIwins,"- Total ODIs won by India")
+
+
